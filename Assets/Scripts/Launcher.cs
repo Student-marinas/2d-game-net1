@@ -67,7 +67,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
 		for(int i = 0; i < players.Count(); i++)
 		{
-			
+			Instantiate(PlayerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(players[i]);
 		}
 
 		startGameButton.SetActive(PhotonNetwork.IsMasterClient);
@@ -122,5 +122,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 		}
 	}
 
-	
+	public override void OnPlayerEnteredRoom(Player newPlayer)
+	{
+		Instantiate(PlayerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
+	}
 }
